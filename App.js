@@ -1,40 +1,57 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom/client";
 
-const heading = React.createElement(
-  "h1",
-  { id: "heading", xyz: "abc", key: "1" },
-  "Hello World by React"
-); //<!-- core react -->
+// JSX - is not html in javaScript it is a  HTML like or XML like  syntax
 
-// {id:"heading",xyz:"abc"} : this is nothing just attributes which are stored as Props in object
+// const jsxHeading = ( <h1 id = "heading "> Hello World using jsx</h1>) ; // it is similar to the create element by reac.createElement  --> This is not proper js code js engine will not be able to understand the code  
+// if u wirte ur jsx in multiple lines we need()
 
-console.log(heading); // nothing just an object of js is what we also call it as react element
 
-const root = ReactDOM.createRoot(document.getElementById("root")); //<!-- react DOM work  ROOT: root is the place where all the react stuff works everything renders inside this root-->
+// console.log(jsxHeading)
 
-root.render(heading); // render just converts the object into h1 tag and putting up it in DOM
+const root = ReactDOM.createRoot(document.getElementById("root"))
 
-// how to do nesting in this
+// root.render(jsxHeading)
 
-{
-  /* <div id = "parent">
-    <div id = "child">
-        <h1>I am h1 tag</h1>
-        <h1>I am h2 tag</h1>
-    </div>
-</div> */
+// before this code going to the js engine it is transpiled (converted to understandable form of js engine ) by parcel
+
+// this transpilation is done by Babel (js compiler/transpiler)
+
+// JSX => React.CreateElement => React Element - Object => HTML Element (render) 
+
+
+/*React Component
+
+class based Component - O ld (uses js classes to create components )
+functional based Component - New (uses js functions to create componenrts)new */ 
+
+
+// Functional components needs to be startd with a capital letter  - A functional component is a function that returns a react element  
+
+// Babel is the SuperHero converting our jsx code into react code 
+
+const Title = () => <h1 id="head" tabIndex="5">Namste React Using JSX</h1> 
+
+const func = () => <h2>hii myself a function called inside the react component</h2>
+const jsVariable = "I just am a JS variable"; 
+
+const reactElement = (<h1>Hii... myself react element in a react component</h1>)
+
+const HeadingComponent1 = () =>{
+    return <div id="container">
+                <Title/> putting a component inside a component{/* we may also write <Title></Title */ }
+                <h1 className="heading">This is a functional Component</h1> {/*we can write any peice of js code*/}
+                <h2>{jsVariable}</h2>
+                {console.log("bhaiiishaab console bhi hogya")}
+                {reactElement}
+                {func()}{/* we may also call a function inside this  */}
+            </div>
 }
 
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {key:"2"}, "I am h1 tag"),
-    React.createElement("h1", {key:"3"}, "I am h2 tag"),
-  ])
-); // If we want siblings of a tag.
+// this is known as component composition - composing two or more components in one another
 
-// what if something already exists in the place we are rendering --> It will replace the earlier content with the new one. the earlier content will be loaded but for a very short time and will be replaced
+const HeadingComponent2 = () => (<h1>This is a functional Component</h1>) // this is also a valid syntax
 
 
+// root.render(<Title/>)
+root.render(<HeadingComponent1/>)
